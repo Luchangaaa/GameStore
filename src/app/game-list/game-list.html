@@ -9,24 +9,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+      @for (game of games; track game.nombre) {
+        <tr [class.clearance]="game.clearance">
             <td><img [src]="game.img" [alt]="game.nombre"></td>
             <td>{{game.nombre}}</td>
             <td>{{game.genero}}</td>
-            <td>{{game.precio}}</td>
-            <td>{{game.stock}}</td>
+            <td>{{game.precio | currency }}</td>
+            @if (game.stock > 0) {
+                <td>{{game.stock}}</td>
+            } @else {
+                <td><span class="badge bg-warning text-dark">SIN STOCK</span></td>
+            }
         </tr>
+      } @empty {
         <tr>
-            <td>The Last of Us</td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td colspan="4">No hay juegos disponibles.</td>
         </tr>
-        <tr>
-            <td>Assassin's Creed</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+      }
     </tbody>
 </table>
