@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Game } from './game';
 import {CurrencyPipe} from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-game-list',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, FormsModule],
   templateUrl: './game-list.html',
   styleUrl: './game-list.scss',
 })
@@ -16,8 +17,9 @@ export class GameList {
     genero: "Mundo Abierto, Acción, Aventura",
     precio: 59.99,
     stock: 100,
-    img: "/assets/img/RDR2.jpeg",
+    img: "//assets/img/RDR2.jpeg",
     clearance: false,
+    cantidad: 0,
   },
 
   {
@@ -25,8 +27,9 @@ export class GameList {
     genero: "Acción, Aventura",
     precio: 69.99,
     stock: 150,
-    img: "/assets/img/TLOU.jpeg",
+    img: "//assets/img/TLOU.jpeg",
     clearance: true,
+    cantidad: 0,
   },
 
   {
@@ -34,9 +37,44 @@ export class GameList {
     genero: "Mundo Abierto, Acción, Aventura, Sigilo",
     precio: 40.00,
     stock: 700,
-    img: "/assets/img/AC.jpeg",
+    img: "//assets/img/AC.jpeg",
     clearance: false,
+    cantidad: 0,
   },
 ];
+
+upQuantity(game: Game) {
+  if (game.cantidad < game.stock) {
+    game.cantidad++;
+  }
 }
- 
+
+downQuantity(game: Game) {
+  if (game.cantidad > 0) {
+    game.cantidad--;
+  }
+}
+
+ChangeQuantity(event: KeyboardEvent, game: Game) {
+  const allowedKeys = [
+    'Backspace',
+    'ArrowLeft',
+    'ArrowRight',
+    'Enter',
+  ];
+
+  const isNumber = /^[0-9]$/.test(event.key);
+  const isAllowed = allowedKeys.includes(event.key);
+
+  if (!isNumber && !isAllowed) {
+    event.preventDefault();
+  }
+
+  if (event.key=='Enter') {
+    if (game.cantidad > game.stock) {
+      game.cantidad = game.stock;
+    }
+  }
+}
+
+}

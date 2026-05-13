@@ -6,12 +6,13 @@
             <th>Género</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Compra</th>
         </tr>
     </thead>
     <tbody>
       @for (game of games; track game.nombre) {
         <tr [class.clearance]="game.clearance">
-            <td><img [src]="game.img" [alt]="game.nombre"></td>
+            <td><img width="100" class="img-thumbnail" [src]="game.img" [alt]="game.nombre"></td>
             <td>{{game.nombre}}</td>
             <td>{{game.genero}}</td>
             <td>{{game.precio | currency }}</td>
@@ -20,6 +21,9 @@
             } @else {
                 <td><span class="badge bg-warning text-dark">SIN STOCK</span></td>
             }
+            <td><button class="btn-primary btn-sm" (click)="downQuantity(game)">-</button>
+                <input type="text" class="form-control form-control-sm text-center" [(ngModel)]="game.cantidad" (keydown)="ChangeQuantity($event, game)">
+                <button class="btn-primary btn-sm" (click)="upQuantity(game)">+</button></td>
         </tr>
       } @empty {
         <tr>
