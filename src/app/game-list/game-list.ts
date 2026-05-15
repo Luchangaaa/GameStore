@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Game } from './game';
-import {CurrencyPipe} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-game-list',
-  imports: [CurrencyPipe, FormsModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './game-list.html',
-  styleUrl: './game-list.scss',
+  styleUrls: ['./game-list.scss'],
 })
 export class GameList {
   
@@ -17,7 +18,7 @@ export class GameList {
     genero: "Mundo Abierto, Acción, Aventura",
     precio: 59.99,
     stock: 100,
-    img: "//assets/img/RDR2.jpeg",
+    img: "assets/img/RDR2.jpeg",
     clearance: false,
     cantidad: 0,
   },
@@ -27,7 +28,7 @@ export class GameList {
     genero: "Acción, Aventura",
     precio: 69.99,
     stock: 150,
-    img: "//assets/img/TLOU.jpeg",
+    img: "assets/img/TLOU.jpeg",
     clearance: true,
     cantidad: 0,
   },
@@ -37,7 +38,7 @@ export class GameList {
     genero: "Mundo Abierto, Acción, Aventura, Sigilo",
     precio: 40.00,
     stock: 700,
-    img: "//assets/img/AC.jpeg",
+    img: "assets/img/AC.jpeg",
     clearance: false,
     cantidad: 0,
   },

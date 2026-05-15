@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './shopping-cart.html',
-  styleUrl: './shopping-cart.scss',
+  styleUrls: ['./shopping-cart.scss'],
 })
 export class ShoppingCart {}
